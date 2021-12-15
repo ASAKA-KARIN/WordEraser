@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form th:action="@{/register}" method="post">
+    <span id="err" style="color:red;"></span>
+    <span>用户名</span><input type="text" id="username" name="username"><br>
+    <span>密码</span><input type="password" id="password" name="password"><br>
+    <input type="submit">
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#username").blur(function () {
+
+            $.ajax({
+                url: "/word/checkUser/"+$("#username").val()+"/",
+                dataType:"json",
+                async:true,
+                success:function (msg) {
+                    $("#err").text(msg)
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

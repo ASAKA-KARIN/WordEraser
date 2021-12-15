@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>作答结果</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+</head>
+<body>
+<div class="container">
+<div id="statistics">
+    <div class="col-md-4">
+        <span>正确题数</span><br>
+        <span id="correct" th:text="${session.correct}">10</span><br>
+    </div>
+    <div class="col-md-4">
+        <div >错误题数</div><br>
+        <div th:each="error:${session.incorrectQuestion}">
+            <a th:text="${error.getQid()}" href="#"></a>
+        </div><br>
+        <span id="incorrect"th:text="${session.incorrectQuestion.size()}">5</span><br>
+    </div>
+            <div class="col-md-4">
+        <span>未作答题数</span><br>
+        <span id="space" th:text="${session.space}">5</span><br>
+    </div>
+</div>
+
+    <div class="col-lg-12">
+    <div class="col-lg-6" id="main1" style="width: 600px;height:600px;"></div>
+    <div class="col-lg-6" id="main2" style="width: 600px;height:600px;"></div>
+    </div>
+
+    <script type="text/javascript">
+
+    var chartDom = document.getElementById('main1');
+    var myChart = echarts.init(chartDom);
+    var option;
+    var correct = document.getElementById('correct').innerText;
+    var error = document.getElementById('incorrect').innerText;
+    var space = document.getElementById('space').innerText;
+
+    option = {
+        legend: {
+            top: 'bottom'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        series: [
+            {
+                name: 'Nightingale Chart',
+                type: 'pie',
+                radius: [50, 250],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                    borderRadius: 8
+                },
+                data: [
+                    { value: correct, name: '正确' },
+                    { value: error, name: '错误' },
+                    { value: space, name: '未作答' }
+                ]
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+    var chartDom2 = document.getElementById('main2');
+    var myChart2 = echarts.init(chartDom2);
+    var option1;
+
+    option1 = {
+        title: {
+            text: 'Stacked Line'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: 'Email',
+                type: 'line',
+                stack: 'Total',
+                data: [120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name: 'Union Ads',
+                type: 'line',
+                stack: 'Total',
+                data: [220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name: 'Video Ads',
+                type: 'line',
+                stack: 'Total',
+                data: [150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name: 'Direct',
+                type: 'line',
+                stack: 'Total',
+                data: [320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name: 'Search Engine',
+                type: 'line',
+                stack: 'Total',
+                data: [820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+
+    option1 && myChart2.setOption(option1);
+
+
+    </script>
+<div class="col-md-12">
+    <ul>
+        <li><a class="btn-info" th:href="@{/}">返回首页</a></li>
+    </ul>
+</div>
+</div>
+</body>
+</html>

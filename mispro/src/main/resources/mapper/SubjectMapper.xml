@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mispro.Mapper.SubjectMapper">
+
+    <insert id="insertSubject">
+        INSERT INTO subject(subjectName,uid)  VALUES (#{subjectName},#{uid})
+    </insert>
+    <select id="getAllSubByUid" resultType="com.example.mispro.Pojo.Subject">
+        SELECT * FROM subject WHERE uid= #{uid}
+    </select>
+    <select id="getSubById" resultType="java.lang.Integer">
+        SELECT sid FROM subject WHERE uid = #{uid} AND subjectName = #{subjectName}
+    </select>
+</mapper>

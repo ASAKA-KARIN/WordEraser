@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<form th:action="@{/check}" method="post">
+    <span>请输入科目</span> <input name="subject" class="from-control" placeholder="当您登陆时，我们会统计您的作答信息" type="text"><br>
+    <div class="col-md-12" th:each="question : ${session.questions}">
+        <span th:text="${question.question}">问题</span>
+        <div class="checkbox" th:each="option : ${question.options}">
+        <input name="answer" th:value="${option.value}" type="checkbox" th:text="${option.option}">
+        </div>
+    </div>
+    <input type="submit">
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>登录</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/login}" method="post">
+        <span>用户名</span><input type="text" id="username" name="username"><br>
+        <span>密码</span><input type="password" id="password" name="password"><br>
+        <input id="Submit" type="submit">
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#Submit').click(function(){
+            if($('#username').val() === ''){
+                alert('用户名不能为空');
+            }else if($('#password').val() === ''){
+                alert('密码不能为空');
+            }else{
+                $(this).text('请稍后...');
+            }
+        });
+    })
+
+</script>
+</body>
+</html>
