@@ -9,5 +9,4 @@ public class MisproApplication {
     public static void main(String[] args) {
         SpringApplication.run(MisproApplication.class, args);
     }
-
 }

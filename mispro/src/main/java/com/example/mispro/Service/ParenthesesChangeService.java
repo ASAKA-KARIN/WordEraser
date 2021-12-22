@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.length;
 @Service
 public class ParenthesesChangeService {
 

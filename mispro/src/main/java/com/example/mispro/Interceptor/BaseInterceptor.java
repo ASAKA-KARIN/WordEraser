@@ -15,6 +15,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 
         if (request.getSession().getAttribute("user")==null)
         {
+            request.getRequestDispatcher("/word/login").forward(request,response);
             return false;
         }
         else {

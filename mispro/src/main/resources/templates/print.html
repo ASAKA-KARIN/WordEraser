@@ -1,80 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8">
+		<title>智慧校园|试题处理</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<script src="./jQuery/js/jquery.min.js"></script>
+		<script src="./bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./css/index.css">
+		<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1, user-scalable=no">
+	</head>
+	<body class="background">
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="@{/print}">智慧校园<small>在线测试</small></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a th:href="@{/}" class="nav-link">返回主页</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="page">
+			<div class="container">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div id="color" th:name="color" style="color: black">
+							<h3>切换颜色</h3>
+							<form th:action="@{/color}" enctype="multipart/form-data" method="post">
+								<span>上传文件</span><br>
+								<input class="form-control" type="file" name="upload" id="upload1"><br>
+								<center>
+									<input class="btn btn-primary" type="submit" name="sub"><br>
+								</center>
+							</form>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div id="parentheses" th:name="parentheses" style="color: saddlebrown">
+							<h3>去除括号</h3>
+							<form th:action="@{/parentpheses}" enctype="multipart/form-data" method="post">
+								<span>上传文件</span><br>
+								<input class="form-control" type="file" name="upload" id="upload2"><br>
+								<center>
+									<input class="btn btn-primary" type="submit" name="sub"><br>
+								</center>
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+							</form>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div id="deleteText" th:name="deleteText" style="color: darkslategray">
+							<h3>去除文本</h3>
+							<form th:action="@{/text}" enctype="multipart/form-data" method="post">
+								<span>上传文件</span><br>
+								<input class="form-control" type="file" name="upload" id="upload3"><br>
+								<center>
+									<input class="btn btn-primary" type="submit" name="sub"><br>
+								</center>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MagicWord</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">色彩</a></li>
-                <li><a href="#">括弧</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        文本
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">jmeter</a></li>
-                        <li><a href="#">EJB</a></li>
-                        <li><a href="#">Jasper Report</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">分离的链接</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">另一个分离的链接</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container">
-<div class="col-md-4" id="color" th:name="color" style="color: black">
-    <div>切换颜色</div>
-    <form th:action="@{/color}" enctype="multipart/form-data" method="post">
-        <span>上传文件</span><br>
-        <input type="file" name="upload" id="upload1"><br>
-        <input type="submit" name="sub"><br>
-    </form>
-</div>
-<div class="col-md-4" id="parentheses" th:name="parentheses" style="color: saddlebrown">
-    <div>去除括号</div>
-    <form th:action="@{/parentpheses}" enctype="multipart/form-data" method="post">
-        <span>上传文件</span><br>
-        <input type="file" name="upload" id="upload2"><br>
-        <input type="submit" name="sub"><br>
-    </form>
-</div>
-<div class="col-md-4" id="deleteText" th:name="deleteText" style="color: darkslategray">
-    <div>去除文本</div>
-    <form th:action="@{/text}" enctype="multipart/form-data" method="post">
-        <span>上传文件</span><br>
-        <input type="file" name="upload" id="upload3"><br>
-        <input type="submit" name="sub"><br>
-    </form>
-</div>
-    <div class="col-md-12" id="integrity" >
-        <div>三合一</div>
-        <form th:action="@{/integrity}" enctype="multipart/form-data" method="post">
-            <span>上传文件</span><br>
-            <input type="file" name="upload" id="upload4"><br>
-            <input type="submit" name="sub"><br>
-        </form>
-    </div>
-</div>
+							</form>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div id="integrity">
+							<h3>三合一</h3>
+							<form th:action="@{/integrity}" enctype="multipart/form-data" method="post">
+								<span>上传文件</span><br>
+								<input class="form-control" type="file" name="upload" id="upload4"><br>
+								<center>
+									<input class="btn btn-primary" type="submit" name="sub"><br>
+								</center>
 
-</body>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<br>
+		<div class="footer">
+			<hr>
+			<div class="container">
+				SmartCampus 智慧校园
+				<br>
+				<a href="http://beian.miit.gov.cn/" target="_blank" style="color:white;">鲁ICP备2020044210号</a>
+				&nbsp;@YOSHIO & @GawrXinuo
+				<br>
+				<br>
+			</div>
+		</div>
+
+	</body>
 </html>

@@ -3,7 +3,7 @@ package com.example.mispro.Controller;
 import com.example.mispro.Mapper.StatisticsMapper;
 import com.example.mispro.Mapper.SubjectMapper;
 import com.example.mispro.Mapper.UserMapper;
-import com.example.mispro.MisproApplication;
+
 import com.example.mispro.Pojo.StatisticsInfo;
 import com.example.mispro.Pojo.User;
 import com.google.gson.Gson;

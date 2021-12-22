@@ -1,0 +1,46 @@
+*{
+  padding:0;
+  margin:0;
+}
+
+.background
+{ 
+	background:url("../img/pc.jpg") no-repeat; 
+	background-size:cover;
+	background-position:center top;
+	background-attachment: fixed;
+}
+.menupage
+{
+	margin:150px auto 150px auto;
+}
+.regpage
+{
+	margin:150px auto auto auto;
+	height: 600px;
+}
+.page
+{
+	margin:150px auto auto auto;
+}
+.menuact
+{
+	transition:all 0.3s linear 0s;
+}
+.menuact:hover
+{
+	filter:alpha(Opacity=0.5);
+ 	-moz-opacity:0.5;
+	opacity:0.5;
+	
+}
+
+.footer
+{
+	text-align: center;
+	color:white;
+	height:80px;
+	padding:5px;
+	buttom:0;
+	font-size:18px;
+}

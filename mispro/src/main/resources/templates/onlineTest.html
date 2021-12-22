@@ -1,29 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>测试</title>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-<form th:action="@{/check}" method="post">
-    <span>请输入科目</span> <input name="subject" class="from-control" placeholder="当您登陆时，我们会统计您的作答信息" type="text"><br>
-    <div class="col-md-12" th:each="question : ${session.questions}">
-        <span th:text="${question.question}">问题</span>
-        <div class="checkbox" th:each="option : ${question.options}">
-        <input name="answer" th:value="${option.value}" type="checkbox" th:text="${option.option}">
-        </div>
-    </div>
-    <input type="submit">
-</form>
-</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>智慧校园|在线测试</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<script src="./jQuery/js/jquery.min.js"></script>
+		<script src="./bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./css/index.css">
+		<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1, user-scalable=no">
+	</head>
+	<body class="background">
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="@{/onlineTest}">智慧校园<small>在线测试</small></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a th:href="@{/}" class="nav-link">返回主页</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="page">
+			<div class="container" style="background-color: white;">
+				<br>
+				<br>
+				<form th:action="@{/check}" method="post">
+					<span>请输入科目</span>
+					<div style="display: inline-block;">
+						<input name="subject" class="form-control" placeholder="当您登陆时，我们会统计您的作答信息" type="text">
+					</div>
+					
+					<br>
+					<hr>
+					
+					<div class="col-md-12" th:each="question : ${session.questions}">
+						<span style="font-weight:bold" th:text="${question.question}">问题</span>
+						<div class="checkbox" th:each="option : ${question.options}">
+							<input class="form-check-input flex-shrink-0" name="answer" th:value="${option.value}" type="checkbox" th:text="${option.option}">
+						</div>
+					</div>
+					<hr>
+					<center>
+						<input class="btn btn-success" type="submit">
+					</center>
+					
+				</form>
+				<br>
+				<br>
+			</div>
+		</div>
+		<br>
+		<div class="footer">
+			<hr>
+			<div class="container">
+				SmartCampus 智慧校园
+				<br>
+				<a href="http://beian.miit.gov.cn/" target="_blank" style="color:white;">鲁ICP备2020044210号</a>
+				&nbsp;@YOSHIO & @GawrXinuo
+				<br>
+				<br>
+			</div>
+		</div>
+	</body>
 </html>

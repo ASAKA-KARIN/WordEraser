@@ -1,53 +1,205 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>MagicWord</title>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8">
+		<title>智慧校园|SmartCampus</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<script src="./jQuery/js/jquery.min.js"></script>
+		<script src="./bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./css/index.css">
+		<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1, user-scalable=no">
+	</head>
+	<body class="background">
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="@{/}">智慧校园</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a th:href="@{/print}" class="nav-link">打印</a></li>
+						<li class="nav-item"><a th:href="@{/test}" class="nav-link">在线测试</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-bs-toggle="dropdown">
+								用户须知
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#userknow">使用须知</a>
+								<a class="dropdown-item" href="#">用户手册</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a th:if="${session.user == null}" data-bs-toggle="modal" data-bs-target="#userdlogin"
+								class="nav-link">登录</a>
+						</li>
+						<li class="nav-item">
+							<a th:if="${session.user == null}" th:href="@{/register}" class="nav-link">注册</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-bs-toggle="dropdown"
+								th:if="${session.user != null}" th:text="${session.user.getUsername()}">
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:if="${session.user != null}" th:href="@{/myHome}">个人信息</a>
+								<a class="dropdown-item" th:if="${session.user != null}" th:href="@{/logout}">注销登录</a>
+							</div>
+						</li>
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MagicWord</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">MagicWord</a></li>
-                <li><a href="#">打印</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        在线测试
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">用前须知</a></li>
-                        <li><a href="#">使用手册</a></li>
-                    </ul>
-                </li>
-                <li><a th:if="${session.user == null}" th:href="@{/login}">登录</a></li>
-                <li><a th:if="${session.user == null}"  th:href="@{/register}">注册</a></li>
-                <li><a class="btn-info" th:href="@{/myHome}" th:if="${session.user != null}" th:text="${session.user.getUsername()}"></a></li>
-                <li><a class="btn-info" th:if="${session.user != null}" th:href="@{/logout}">注销</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="col-md-6 ">
-        <div style="color: darkblue"> <a th:href="@{/print}">我要打印</a></div>
-    </div>
-    <div class="col-md-6">
-        <div style="color: darkslategrey"><a th:href="@{/test}">在线测试</a> </div>
-    </div>
-</div>
-<div><button id="quickStar">使用说明</button></div>
-</body>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- 使用须知 -->
+		<div class="modal fade" id="userknow">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<!-- 模态框头部 -->
+					<div class="modal-header">
+						<h4 class="modal-title">使用须知</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- 模态框内容 -->
+					<div class="modal-body">
+						内容
+					</div>
+
+					<!-- 模态框底部 -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- 用户登录 -->
+		<div class="modal fade" id="userdlogin">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<!-- 模态框头部 -->
+					<div class="modal-header">
+						<h4 class="modal-title">用户登录</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+					<!-- 模态框内容 -->
+					<div class="modal-body">
+						<div class="container" style="text-align: center;">
+							<br>
+							<form th:action="@{/login}" method="post">
+								<center>
+									<span>用户名：</span>
+									<div class="col-sm-4" style="display: inline-block">
+										<input type="text" class="form-control" placeholder="请输入用户名" id="username"
+											name="username">
+									</div>
+									<br><br>
+									<span>&nbsp;&nbsp;&nbsp;密码：</span>
+									<div class="col-sm-4" style="display: inline-block">
+										<input type="password" class="form-control" placeholder="请输入密码" id="password"
+											name="password">
+									</div>
+								</center>
+								<br><br>
+								<input id="Submit" type="submit" class="btn btn-success">
+								<button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+									style="color: white;">关闭</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+			var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+				return new bootstrap.Tooltip(tooltipTriggerEl)
+			})
+		</script>
+		<div class="menupage">
+			<div class="container" style="text-align: center;">
+				<div style="display: inline-block;">
+					<div style="display: inline-block;">
+						&nbsp;
+						<a th:href="@{/test}" data-bs-toggle="tooltip" data-bs-placement="top" title="在线测试"><img
+								class="img-fluid rounded menuact" src="./img/menu/test.png" alt=""
+								style="width: 200px;"></a>
+
+						&nbsp;
+						<a th:href="@{/print}" data-bs-toggle="tooltip" data-bs-placement="top" title="去除题干上的答案"><img
+								class="img-fluid rounded menuact" src="./img/menu/clear.png" alt=""
+								style="width: 200px;"></a>
+
+					</div>
+
+					<div style="display: inline-block;">
+						&nbsp;
+						<a th:href="@{/print}" data-bs-toggle="tooltip" data-bs-placement="top" title="将不同颜色的答案换色"><img
+								class="img-fluid rounded menuact" src="./img/menu/magic.png" alt=""
+								style="width: 200px;"></a>
+						&nbsp;
+						<a th:href="@{/print}" data-bs-toggle="tooltip" data-bs-placement="top" title="去除题目最后的答案"><img
+								class="img-fluid rounded menuact" src="./img/menu/horse.png" alt=""
+								style="width: 200px;"></a>
+					</div>
+
+				</div>
+				<br>
+				<br>
+				<div style="display: inline-block;">
+					<div style="display: inline-block;">
+						&nbsp;
+						<a th:href="@{/print}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="干就完了"><img
+								class="img-fluid rounded menuact" src="./img/menu/step.png" alt=""
+								style="width: 200px;"></a>
+						&nbsp;
+						<a th:href="@{/myHome}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="统计信息"><img
+								class="img-fluid rounded menuact" src="./img/menu/sta.png" alt=""
+								style="width: 200px;"></a>
+					</div>
+					<div style="display: inline-block;">
+						&nbsp;
+						<a data-bs-toggle="tooltip" data-bs-placement="bottom" title="敬请期待!"><img
+								class="img-fluid rounded menuact" src="./img/menu/none.png" alt=""
+								style="width: 200px;"></a>
+						&nbsp;
+						<a data-bs-toggle="tooltip" data-bs-placement="bottom" title="敬请期待!"><img
+								class="img-fluid rounded menuact" src="./img/menu/none.png" alt=""
+								style="width: 200px;"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="footer">
+			<hr>
+			<div class="container">
+				SmartCampus 智慧校园
+				<br>
+				<a href="http://beian.miit.gov.cn/" target="_blank" style="color:white;">鲁ICP备2020044210号</a>
+				&nbsp;@YOSHIO & @GawrXinuo
+				<br>
+				<br>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				$('#Submit').click(function() {
+					if ($('#username').val() === '') {
+						alert('用户名不能为空');
+					} else if ($('#password').val() === '') {
+						alert('密码不能为空');
+					} else {
+						$(this).text('请稍后...');
+					}
+				});
+			})
+		</script>
+
+	</body>
 </html>

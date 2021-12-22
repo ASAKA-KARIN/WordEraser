@@ -98,7 +98,7 @@ public class TestOnlineController {
         else
         {
             for (int i = 0;i < checkBox.length-1;i++)
-            {
+             {
                 if (questions.get(i).getAnswer().contains(checkBox[i]))
                 {
                     count++;

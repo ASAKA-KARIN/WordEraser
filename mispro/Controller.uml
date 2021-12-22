@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.mispro.Controller</OriginalElement>
+  <nodes>
+    <node x="0.0" y="285.0">com.example.mispro.Controller.BaserController</node>
+    <node x="454.0" y="0.0">com.example.mispro.Controller.TestOnlineController</node>
+    <node x="436.0" y="285.0">com.example.mispro.Controller.IntegrityController</node>
+    <node x="0.0" y="546.0">com.example.mispro.Controller.AlipayController</node>
+    <node x="0.0" y="840.0">com.example.mispro.Controller.TextChangeController</node>
+    <node x="422.0" y="546.0">com.example.mispro.Controller.ParenthesesController</node>
+    <node x="0.0" y="716.0">com.example.mispro.Controller.ColorController</node>
+    <node x="0.0" y="0.0">com.example.mispro.Controller.UserController</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="395.0" y="202.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

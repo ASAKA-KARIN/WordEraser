@@ -40,9 +40,9 @@ public class TextChangeService {
                 }
             }
             xwpfDocument.write(fileOutputStream);
-            if (flag) {
-                MisUtil.wordToPDFAndPrint(filePath, filePath);
-            }
+//            if (flag) {
+//                MisUtil.wordToPDFAndPrint(filePath, filePath);
+//            }
             }
         catch (IOException ioe)
         {

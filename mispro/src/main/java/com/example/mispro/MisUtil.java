@@ -1,10 +1,6 @@
 package com.example.mispro;
 
-import com.jacob.activeX.ActiveXComponent;
-import com.jacob.com.ComThread;
-import com.jacob.com.Dispatch;
-import com.jacob.com.Variant;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPrintable;
 import org.apache.pdfbox.printing.Scaling;
@@ -13,8 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.print.PrintService;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.Sides;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 
 import java.awt.print.Book;
@@ -88,47 +83,47 @@ public class MisUtil {
     }
 
     //word转化pdf，传入转换前的文件路径（例："E:\\a.docx"）和转换后的文件路径（例："E:\\a.pdf"）
-    public static void wordToPDFAndPrint(String sFilePath,String toFilePath) {
-        System.out.println("启动 Word...");
-        long start = System.currentTimeMillis();
-        ActiveXComponent app = null;
-        Dispatch doc = null;
-        File tofile = null;
-        try {
-            app = new ActiveXComponent("Word.Application");
-            app.setProperty("Visible", new Variant(false));
-            Dispatch docs = app.getProperty("Documents").toDispatch();
-            doc = Dispatch.call(docs, "Open", sFilePath).toDispatch();
-            System.out.println("打开文档:" + sFilePath);
-            System.out.println("转换文档到 PDF:" + toFilePath);
-            tofile = new File(toFilePath);
-            if (tofile.exists()) {
-                tofile.delete();
-            }
-            Dispatch.call(doc, "SaveAs", toFilePath, // FileName
-                    17);//17是pdf格式
-            long end = System.currentTimeMillis();
-            System.out.println("转换完成..用时：" + (end - start) + "ms.");
-
-        } catch (Exception e) {
-            System.out.println("========Error:文档转换失败：" + e.getMessage());
-        } finally {
-            Dispatch.call(doc, "Close", false);
-            System.out.println("关闭文档");
-            if (app != null)
-                app.invoke("Quit", new Variant[]{});
-        }
-
-        // 如果没有这句话,winword.exe进程将不会关闭
-        ComThread.Release();
-        try {
-            PDFprint(tofile, PRINTER_NAME);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        }
+//    public static void wordToPDFAndPrint(String sFilePath,String toFilePath) {
+//        System.out.println("启动 Word...");
+//        long start = System.currentTimeMillis();
+//        ActiveXComponent app = null;
+//        Dispatch doc = null;
+//        File tofile = null;
+//        try {
+//            app = new ActiveXComponent("Word.Application");
+//            app.setProperty("Visible", new Variant(false));
+//            Dispatch docs = app.getProperty("Documents").toDispatch();
+//            doc = Dispatch.call(docs, "Open", sFilePath).toDispatch();
+//            System.out.println("打开文档:" + sFilePath);
+//            System.out.println("转换文档到 PDF:" + toFilePath);
+//            tofile = new File(toFilePath);
+//            if (tofile.exists()) {
+//                tofile.delete();
+//            }
+//            Dispatch.call(doc, "SaveAs", toFilePath, // FileName
+//                    17);//17是pdf格式
+//            long end = System.currentTimeMillis();
+//            System.out.println("转换完成..用时：" + (end - start) + "ms.");
+//
+//        } catch (Exception e) {
+//            System.out.println("========Error:文档转换失败：" + e.getMessage());
+//        } finally {
+//            Dispatch.call(doc, "Close", false);
+//            System.out.println("关闭文档");
+//            if (app != null)
+//                app.invoke("Quit", new Variant[]{});
+//        }
+//
+//        // 如果没有这句话,winword.exe进程将不会关闭
+//        ComThread.Release();
+//        try {
+//            PDFprint(tofile, PRINTER_NAME);
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        }
 
     /**
      *
@@ -147,7 +142,8 @@ public class MisUtil {
             if (printerName != null) {
                 // 查找并设置打印机
                 //获得本台电脑连接的所有打印机
-                PrintService[] printServices = PrinterJob.lookupPrintServices();                			 if(printServices == null || printServices.length == 0) {
+                PrintService[] printServices = PrinterJob.lookupPrintServices();
+                if(printServices == null || printServices.length == 0) {
                     System.out.print("打印失败，未找到可用打印机，请检查。");
                     return ;
                 }
